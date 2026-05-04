@@ -1,0 +1,45 @@
+const {DataTypes}=require("sequelize")
+
+
+module.exports=((sequelize)=>{
+    sequelize.define("User",{
+        id:{
+            type:DataTypes.UUID,
+            primaryKey:true,
+            defaultValue:DataTypes.UUIDV4
+        },
+        name:{
+            type:DataTypes.STRING,
+            allowNull:false
+        },
+        middleName:{
+            type:DataTypes.STRING,
+            allowNull:true
+        },
+        lastName:{
+            type:DataTypes.STRING,
+            allowNull:false
+        },
+        middleLastName:{
+            type:DataTypes.STRING,
+            allowNull:true
+        },
+        mail:{
+            type:DataTypes.STRING,
+            allowNull:false
+        },
+        address:{
+            type:DataTypes.STRING
+        },
+        role:{
+            type:DataTypes.ENUM
+            ("admin","customer","seller"),
+            allowNull:false,
+            defaultValue:"customer"
+        },
+        password:{
+            type:DataTypes.STRING,
+            allowNull:false
+        }
+    })
+})
