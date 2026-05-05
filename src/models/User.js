@@ -26,7 +26,8 @@ module.exports=((sequelize)=>{
         },
         mail:{
             type:DataTypes.STRING,
-            allowNull:false
+            allowNull:false,
+            unique:true
         },
         address:{
             type:DataTypes.STRING
@@ -39,7 +40,7 @@ module.exports=((sequelize)=>{
         },
         password:{
             type:DataTypes.STRING,
-            allowNull:false
+            allowNull:false,
         }
     })
 })
