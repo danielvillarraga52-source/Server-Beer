@@ -1,7 +1,7 @@
 const {User}=require("../../db");
 const jwt=require("jsonwebtoken");
 const  bcrypt  =  require ( 'bcrypt' );
-const {Op} = require("sequelize");
+const {Op, where} = require("sequelize");
 
 
 
@@ -45,11 +45,36 @@ const createUser=async({name,middleName,lastName,middleLastName,mail,address,rol
 
 };
 
+const askOneUser= async({id})=>{
 
+    const user = await User.findByPk(id);
+    if(!user) throw Error("usuario no existe");
+    return user;
+}
+const changeUser=async({id,mail,address,password})=>{
+    
+    const user = await User.findByPk(id);
+    if(!user) throw Error("usuario no existe");
+    const edit= await user.update({
+        mail,
+        address,
+        password
+    });
+    return edit;
+}
+const userBlocked =async({id})=>{
+    const user = await User.findByPk(id);
+    if(!user) throw Error("usuario no existe");
+    await user.destroy();
+    return user;
+}
 
 module.exports={
     createUser,
     askAllUsers,
-    askByName
+    askByName,
+    askOneUser,
+    changeUser,
+    userBlocked
 
 }
