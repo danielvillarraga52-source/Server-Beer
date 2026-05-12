@@ -34,7 +34,7 @@ module.exports=((sequelize)=>{
         },
         role:{
             type:DataTypes.ENUM
-            ("admin","customer","seller"),
+            ("customer","seller"),
             allowNull:false,
             defaultValue:"customer"
         },
